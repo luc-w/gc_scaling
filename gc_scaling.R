@@ -19,7 +19,6 @@ ui <- dashboardPage(
   # HEADER
   dashboardHeader(title = "Gc"),  
   
-  
   # Define inputs
   dashboardSidebar(
     
