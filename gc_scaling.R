@@ -32,10 +32,13 @@ ui <- dashboardPage(
   # Define inputs
   dashboardSidebar(
     
+    # Subtitle 1: Upload data ----
+    h3("Upload", style = "margin: 20px 5px 20px 16px;"),
+    
     # Input: Downloadable sample data for illustration ----
     downloadButton(outputId = "download_template", 
-                   label = "Download Template"),
-    
+                   label = "Download Template",
+                   style = "color: #fff; background-color: #27ae60; border-color: #fff;padding: 5px 14px 5px 14px; margin: 20px 5px 20px 18px;"),
     
     # Input: Select a file ----
     fileInput("file1", "Upload CSV File",
@@ -47,6 +50,9 @@ ui <- dashboardPage(
     # horizontal line ----
     tags$hr(),
     
+    # Subtitle 2: Chose reference sample  ----
+    h3("Reference Sample", style = "margin: 20px 5px 20px 16px;"),
+
     # Input: Sex of norm sample ----
     selectInput("sex", "Sex",
                 c("All" = "all",
@@ -72,9 +78,13 @@ ui <- dashboardPage(
     # horizontal line ----
     tags$hr(),
     
+    # Subtitle 3: Download data ----
+    h3("Download", style = "margin: 20px 5px 20px 18px;"),
+    
     # Input: Download data ----
     downloadButton(outputId = "download_scaled_data", 
-                   label = "Download Scaled Data"),
+                   label = "Download Scaled Data",
+                   style = "color: #fff; background-color: red; border-color: #fff;width:130;padding: 5px 5px 5px 5px; margin: 5px 5px 5px 16px; "),
     
     # horizontal line ----
     tags$hr(),
@@ -91,6 +101,8 @@ ui <- dashboardPage(
   # Define what's being output
   dashboardBody(
     
+      includeMarkdown('main.md'),
+          
       tabsetPanel(type = "tabs",
                   tabPanel("Score Distribution", 
                            plotOutput("plot1", width = 700, height = 700)),
