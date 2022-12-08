@@ -7,6 +7,7 @@ library(shinydashboard)
 library(dashboardthemes)
 library(ggplot2)
 library(tidyr)
+library(dplyr)
 library(markdown)
 
 # static data sets
@@ -32,8 +33,8 @@ ui <- dashboardPage(
   dashboardSidebar(
     
     # Input: Downloadable sample data for illustration ----
-    downloadButton(outputId = "download_sample_data", 
-                   label = "Download Sample Data"),
+    downloadButton(outputId = "download_template", 
+                   label = "Download Template"),
     
     
     # Input: Select a file ----
@@ -192,25 +193,26 @@ server <- function(input, output) {
                     })
     
     # Output: Imported data plus standardized scores ----
-    output$download_sample_data <- downloadHandler(
+    output$download_template <- downloadHandler(
                 
-                                      write.csv2(sample_data, "sample_data.csv", row.names = FALSE)
-                                  
-                                      )
+                                    filename = "template.csv",
+                                    content = function(con) {
+                                      write.csv2(sample_data, con, row.names = FALSE)
+                                    }
+                                    
+                                    )
     
     # Output: Imported data plus standardized scores ----
     output$download_scaled_data <- downloadHandler(
                 
                                     filename = function() {
-                                      paste0('gc_scores_', Sys.Date(), ".csv")
+                                      paste0("gc_scores_", Sys.Date(), ".csv")
                                       },
                                     content = function(con) {
                                       write.csv2(scaled_data(), con, row.names = FALSE)
-                                      }
+                                    }
+                                    
                                     )
-    
-    
-    
     
       
 }
