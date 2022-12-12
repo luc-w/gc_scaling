@@ -16,10 +16,10 @@ df_full <- read.csv2("gc_age_final_2020-08-27.csv") %>%
            mutate(gc1 = rowSums(select(., short[[1]]), na.rm = TRUE),
                   gc2 = rowSums(select(., short[[2]]), na.rm = TRUE),
                   gc3 = rowSums(select(., short[[3]]), na.rm = TRUE))
-sample_data <- data.frame(id = 1:20,
-                          gc1 = round(rnorm(20, 7, 2), 0),
-                          gc2 = round(rnorm(20, 7, 2), 0),
-                          gc3 = round(rnorm(20, 7, 2), 0))
+sample_data <- data.frame(id = 1:40,
+                          gc1 = round(rnorm(40, 7, 2), 0),
+                          gc2 = round(rnorm(40, 7, 2), 0),
+                          gc3 = round(rnorm(40, 7, 2), 0))
 
 
 # define ui
