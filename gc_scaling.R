@@ -1,5 +1,4 @@
-# Luc Watrin (2022)
-# luc.watrin@uni-ulm.de
+set.seed(666)
 
 # load packages
 library(shiny)
@@ -17,10 +16,10 @@ df_full <- read.csv2("gc_age_final_2020-08-27.csv") %>%
            mutate(gc1 = rowSums(select(., short[[1]]), na.rm = TRUE),
                   gc2 = rowSums(select(., short[[2]]), na.rm = TRUE),
                   gc3 = rowSums(select(., short[[3]]), na.rm = TRUE))
-sample_data <- data.frame(id = c(1,2,3,4,5),
-                          gc1 = c(5,8,9,12,11),
-                          gc2 = c(6,9,8,6,10), 
-                          gc3 = c(7,3,11,12,8))
+sample_data <- data.frame(id = 1:20,
+                          gc1 = round(rnorm(20, 7, 2), 0),
+                          gc2 = round(rnorm(20, 7, 2), 0),
+                          gc3 = round(rnorm(20, 7, 2), 0))
 
 
 # define ui
@@ -38,7 +37,7 @@ ui <- dashboardPage(
     # Input: Downloadable sample data for illustration ----
     downloadButton(outputId = "download_template", 
                    label = "Download Template",
-                   style = "color: #fff; background-color: #27ae60; border-color: #fff;padding: 5px 14px 5px 14px; margin: 20px 5px 20px 18px;"),
+                   style = "color: #fff; background-color: #27ae60; border-color: #fff;padding: 5px 14px 5px 14px; margin: 5px 5px 20px 18px;"),
     
     # Input: Select a file ----
     fileInput("file1", "Upload CSV File",
@@ -49,9 +48,10 @@ ui <- dashboardPage(
     
     # horizontal line ----
     tags$hr(),
+    tags$hr(),
     
     # Subtitle 2: Chose reference sample  ----
-    h3("Reference Sample", style = "margin: 20px 5px 20px 16px;"),
+    h3("Reference Sample", style = "margin: 5px 5px 20px 16px;"),
 
     # Input: Sex of norm sample ----
     selectInput("sex", "Sex",
