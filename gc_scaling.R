@@ -11,11 +11,13 @@ library(markdown)
 
 # static data sets
 short <- read.csv("5256_gc_3_12_best_models.csv", sep=";")
+
 df_full <- read.csv2("gc_age_final_2020-08-27.csv") %>% 
            # compute total scores of short scales
            mutate(gc1 = rowSums(select(., short[[1]]), na.rm = TRUE),
                   gc2 = rowSums(select(., short[[2]]), na.rm = TRUE),
                   gc3 = rowSums(select(., short[[3]]), na.rm = TRUE))
+
 sample_data <- data.frame(id = 1:40,
                           gc1 = round(rnorm(40, 7, 2), 0),
                           gc2 = round(rnorm(40, 7, 2), 0),
@@ -38,7 +40,7 @@ ui <- dashboardPage(
     downloadButton(outputId = "download_template", 
                    label = "Download Template",
                    style = "color: #fff; 
-                            background-color: #27ae60; 
+                            background-color: #733939; 
                             border-color: #fff;
                             padding: 5px 14px 5px 14px; 
                             margin: 5px 5px 20px 18px;"),
@@ -89,7 +91,7 @@ ui <- dashboardPage(
     downloadButton(outputId = "download_scaled_data", 
                    label = "Download Scaled Data",
                    style = "color: #fff; 
-                            background-color: red; 
+                            background-color: #733939; 
                             border-color: #fff;
                             width:130;
                             padding: 5px 5px 5px 5px; 
@@ -167,9 +169,9 @@ server <- function(input, output) {
 
       # scale uploaded scores (if available) based on (user-defined) norm sample
       scaled_data <- scores()
-      scaled_data <- if("gc1" %in% colnames(scores())) mutate(scaled_data, zcg1 = (scores()$gc1 - mean(norm_data()$gc1))/sd(norm_data()$gc1))
-      scaled_data <- if("gc2" %in% colnames(scores())) mutate(scaled_data, zcg2 = (scores()$gc2 - mean(norm_data()$gc2))/sd(norm_data()$gc2)) else scaled_data
-      scaled_data <- if("gc3" %in% colnames(scores())) mutate(scaled_data, zcg3 = (scores()$gc3 - mean(norm_data()$gc3))/sd(norm_data()$gc3)) else scaled_data
+      scaled_data <- if("gc1" %in% colnames(scores())) mutate(scaled_data, zgc1 = (scores()$gc1 - mean(norm_data()$gc1))/sd(norm_data()$gc1))
+      scaled_data <- if("gc2" %in% colnames(scores())) mutate(scaled_data, zgc2 = (scores()$gc2 - mean(norm_data()$gc2))/sd(norm_data()$gc2)) else scaled_data
+      scaled_data <- if("gc3" %in% colnames(scores())) mutate(scaled_data, zgc3 = (scores()$gc3 - mean(norm_data()$gc3))/sd(norm_data()$gc3)) else scaled_data
 
     })
 
