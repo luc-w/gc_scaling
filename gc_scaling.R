@@ -101,7 +101,7 @@ ui <- dashboardPage(
     tags$hr(),
     
     # License
-    HTML("luc.watrin[at]uni-ulm.de <br>
+    HTML("luc.zimny[at]uni-ulm.de <br>
          CC-By Attribution 4.0 International <br>
          Code available at https://github.com/luc-w/gc_scaling")
   ),
@@ -114,9 +114,10 @@ ui <- dashboardPage(
           
       tabsetPanel(type = "tabs",
                   tabPanel("Score Distribution", 
-                           plotOutput("plot1", width = 700, height = 700)),
-                  tabPanel("Debug", 
-                           tableOutput("tab_debug"))
+                           plotOutput("plot1", width = 700, height = 700))
+                  # ,
+                  # tabPanel("Debug", 
+                  #         tableOutput("tab_debug"))
       ))
 )
 
@@ -214,15 +215,15 @@ server <- function(input, output) {
     
     
     # Output: Scaled data table
-    output$tab_debug <- renderTable({
-      
-                         if (is.null(scaled_data())) {
-                           return(NULL)
-                         }
-          
-                         scaled_data()
-                         
-                        })
+    # output$tab_debug <- renderTable({
+    #   
+    #                      if (is.null(scaled_data())) {
+    #                        return(NULL)
+    #                      }
+    #       
+    #                      scaled_data()
+    #                      
+    #                     })
         
     # Output: Imported data plus standardized scores ----
     output$download_template <- downloadHandler(
