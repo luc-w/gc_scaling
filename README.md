@@ -1,7 +1,14 @@
 ## Shiny App Gc Scaling
 
-Code for https://psy-diagnostics.shinyapps.io/gc_scaling/.
+Code for a [Shiny App] accompanying the following publication, also available on [PsyArxiv]:
 
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />Dieses Werk ist lizenziert unter einer <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Namensnennung 4.0 International Lizenz</a>.
+Zimny, L., Schroeders, U., & Wilhelm, O. (in press). Ant Colony Optimization for Parallel Test Assembly. *Behavior Research Methods.*
 
-...
+<p align="center">
+<img src="https://i.ibb.co/0jCr2Jf/2024-01-16-10-40-44-Gc-Mozilla-Firefox.png"
+  alt="Shiny App"
+  width="500" height="341">
+</p>
+
+[Shiny App]: https://psy-diagnostics.shinyapps.io/gc_scaling/
+[PsyArxiv]: https://osf.io/preprints/psyarxiv/zn7m2
